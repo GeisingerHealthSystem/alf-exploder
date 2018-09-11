@@ -30,6 +30,10 @@ public class ALFExploder extends Configured implements Tool {
     private static final String OUTPUT_DIR_OPTION = "outputdir";
 
     public static void main(String args[]) throws Exception {
+        // Issues with recognizing HAR path, testing solutions...
+        conf.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
+        conf.set("fs.file.impl", org.apache.hadoop.fs.LocalFileSystem.class.getName());
+        // Upstream code continues here
         Configuration conf = new YarnConfiguration();
         ALFExploder calf = new ALFExploder();
         calf.setConf(conf);
